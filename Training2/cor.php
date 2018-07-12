@@ -1,13 +1,10 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head> 
-<?php
-include('D:\newxampp\htdocs\Training2\ReadFrom.php');
-$html =  file_get_content('data.html');
-print_r($html);
-?>
+
 
 <script>
+setInterval (function getdata(){
 	try{
 $.get("Readfrom.php", null, function(data) {
   var arrayb = $("<ul>") //selecting <ul>
@@ -26,11 +23,12 @@ $.get("Readfrom.php", null, function(data) {
      };
     });
 
-  console.log(arrayb);
+  //console.log(arrayb);
   replace(arrayb);
 }, "text");
 }
-catch{ console.log('something wrong')};
+
+catch{ console.log('something wrong')};},10000)
 function replace(arrayb)
 
 {
@@ -38,11 +36,11 @@ function replace(arrayb)
 
 $.ajax({
 	data:{ar:arrayb},
-
     url: 'data.php',
     success:function(data){
 	//alert("data save"+ data);
 }
+
 });
 }
 </script>'
